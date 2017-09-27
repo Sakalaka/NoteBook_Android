@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg" >
+	<LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    >
+	    <TextView
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="10dp"
+	        android:layout_marginLeft="10dp"
+	        android:text="标题："
+	        android:textSize="25sp"
+	        android:textColor="#ffffff"
+	        />
+	    <EditText 
+	        android:id="@+id/title1"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:textColor="#ffffff"
+	        android:layout_marginRight="10dp"
+	        />
+	</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:textColor="#ffffff" >
+		<TextView 
+		    android:id="@+id/date2"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"	
+			android:textSize="25sp"    
+	    />
+        <EditText
+        android:id="@+id/notecontent2"
+        android:layout_width="280dp"
+        android:layout_height="350dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="5dp" 
+        android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:textColor="#ffffff" >
+        <Button
+            android:id="@+id/update1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="修改"
+            android:layout_marginLeft="20dp"
+            android:textColor="#ffffff" />
+
+		<TextView
+		    android:layout_width="wrap_content"
+		    android:layout_height="match_parent"
+		    android:layout_weight="1" 
+		    android:textColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/delete2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除此笔记"
+            android:layout_marginRight="20dp"
+            android:textColor="#ffffff"
+/>
+
+    </LinearLayout>
+
+</LinearLayout>
