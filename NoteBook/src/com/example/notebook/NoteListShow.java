@@ -51,7 +51,7 @@ public class NoteListShow extends Activity implements OnScrollListener,OnItemCli
 	//数据表名
 	static String NOTE_TABLE="Notes";
 	ListView listview1;
-	Button addBtn;
+	Button addbtn;
 	TextView username1;
 	//声明适配器
 //	int number=1;
@@ -66,8 +66,8 @@ public class NoteListShow extends Activity implements OnScrollListener,OnItemCli
 		list.addAll(getData());
 		ada=new ArrayAdapter<String>(this,R.layout.list_item,list);
 		username1=(TextView) findViewById(R.id.username1);
-		addBtn=(Button) findViewById(R.id.addBtn);
-		addBtn.setOnClickListener(this);
+		addbtn=(Button) findViewById(R.id.addBtn);
+		addbtn.setOnClickListener(this);
 		//将从上一个Activity传来的username显示在页面上
 		bundle2=this.getIntent().getExtras();
 		username1.setText(bundle2.getString("user_name").toString());
