@@ -16,7 +16,7 @@ import android.widget.Toast;
 import bean.Note;
 /*此类用于写笔记并存入数据库，key为用户名和当前时间*/
 public class WriteNoteActivity extends Activity implements OnClickListener{
-	EditText et3;
+	EditText content;
 	Button save;
 	EditText title;
 	@Override
@@ -24,7 +24,7 @@ public class WriteNoteActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.write_note);
-		et3=(EditText) findViewById(R.id.write_note);
+		content=(EditText) findViewById(R.id.write_note);
 		Bundle bundleW=this.getIntent().getExtras();
 		String username=bundleW.getString("user_name").toString();
 		save=(Button)findViewById(R.id.save1);
@@ -55,13 +55,13 @@ public class WriteNoteActivity extends Activity implements OnClickListener{
 		DBBuildAndConnection helper=new DBBuildAndConnection(WriteNoteActivity.this,"NoteBook.db", null, 1);
 		DaoDemo dd=new DaoDemo();
 		Note noteadd=new Note();
-		et3=(EditText) findViewById(R.id.write_note);
+		content=(EditText) findViewById(R.id.write_note);
 		title=(EditText) findViewById(R.id.title);
 		Bundle bundleW=this.getIntent().getExtras();
 		noteadd.setNotename(this.getDateAndTime());
 		noteadd.setTitle(title.getText().toString());
 		noteadd.setUsername(bundleW.getString("user_name").toString());
-		noteadd.setNote_content(et3.getText().toString());
+		noteadd.setNote_content(content.getText().toString());
 		if(noteadd.getTitle().equals("")) {
 			Toast.makeText(WriteNoteActivity.this, "标题不能为空！", Toast.LENGTH_SHORT).show();
 		}else

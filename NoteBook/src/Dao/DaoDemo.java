@@ -28,10 +28,10 @@ public class DaoDemo {
 		try {
 		Log.e("getResult 名字:::", cursor.getString(0));
 		Log.e("getResult psw:::", cursor.getString(1));
-		String usernameget=cursor.getString(0);
-		String passwordget=cursor.getString(1);
-		user.setUsername(usernameget);
-		user.setPassword(passwordget);
+		String userNameGet=cursor.getString(0);
+		String passWordGet=cursor.getString(1);
+		user.setUsername(userNameGet);
+		user.setPassword(passWordGet);
 		}catch(Exception e) {
 			Log.e("warn:::","数据没有");
 			user.setUsername("");
@@ -45,21 +45,21 @@ public class DaoDemo {
 	}
 	
 //	添加用户
-	public int addUser(DBBuildAndConnection dbhelper,User user) {
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+	public int addUser(DBBuildAndConnection dbHelper,User user) {
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="insert into Users values(?,?)";
 		String[] va= {user.getUsername(),user.getPassword()};
 		db.execSQL(sql,va);
 		
-		User usertest=queryUser(dbhelper,user.username);
+		User usertest=queryUser(dbHelper,user.username);
 		Log.e("添加：：", user.password+"成功");
 		db.close();
 		return 0;
 	}
 //	查询所有用户
-	public int queryAll(DBBuildAndConnection dbhelper) {
+	public int queryAll(DBBuildAndConnection dbHelper) {
 		Log.e("queryAll分割线-------","===============");
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="select * from Users";
 //		String sql2="delete from Users where username=?";
 		Cursor cursor;
@@ -96,9 +96,9 @@ public class DaoDemo {
 		
 	}
 	//添加笔记
-	public void addNote(DBBuildAndConnection dbhelper,Note note) {
+	public void addNote(DBBuildAndConnection dbHelper,Note note) {
 		Log.e("addNote分割线-------","===============");
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="insert into Notes values(?,?,?,?)";
 		String[] va= {note.getNotename(),note.getTitle(),note.getUsername(),note.getNote_content()};
 		Log.e("add::content::",note.getNote_content());
@@ -106,16 +106,16 @@ public class DaoDemo {
 		Log.e("add::Notename::",note.getNotename());
 		Log.e("add::Username::",note.getUsername());
 		db.execSQL(sql,va);
-		this.queryAllNoteName(dbhelper,note.getUsername());
+		this.queryAllNoteName(dbHelper,note.getUsername());
 		db.close();
 	}
 	
 	//根据笔记名(日期)查询笔记
-	public Note queryNoteByNoteName(DBBuildAndConnection dbhelper,String notename) {
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
-		Log.e("DaoDemo::getNotename",notename);
+	public Note queryNoteByNoteName(DBBuildAndConnection dbHelper,String noteName) {
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
+		Log.e("DaoDemo::getNotename",noteName);
 		String sql="select * from Notes where notename=?";
-		String [] va= {notename};
+		String [] va= {noteName};
 		Cursor cursor=db.rawQuery(sql, va);
 		cursor.moveToFirst();
 		Note note=new Note();
@@ -131,21 +131,21 @@ public class DaoDemo {
 		return note;
 	}
 	//根据笔记名删除笔记
-	public void deleteNote(DBBuildAndConnection dbhelper,String notename) {
+	public void deleteNote(DBBuildAndConnection dbHelper,String noteName) {
 		Log.e("deleteNote分割线-------","===============");
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="delete from Notes where notename=? ";
-		String[] va= {notename};
+		String[] va= {noteName};
 		db.execSQL(sql,va);
-		Log.e("删除note", notename);
+		Log.e("删除note", noteName);
 		Log.e("删除", "成功");
 		db.close();
-		this.queryAllNoteName(dbhelper,"zhangsan");
+		this.queryAllNoteName(dbHelper,"zhangsan");
 	}
 	//根据title删除笔记
-	public void deleteNoteByTitle(DBBuildAndConnection dbhelper,String title) {
+	public void deleteNoteByTitle(DBBuildAndConnection dbHelper,String title) {
 		Log.e("deleteNoteByTitle分割线-------","===============");
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="delete from Notes where title=? ";
 		String[] va= {title};
 		db.execSQL(sql,va);
@@ -154,17 +154,17 @@ public class DaoDemo {
 		db.close();
 //		this.queryAllNoteName(dbhelper,"zhangsan");
 	}	
-	public List<String> queryAllNote(DBBuildAndConnection dbhelper){
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+	public List<String> queryAllNote(DBBuildAndConnection dbHelper){
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		String sql="select * from Notes";
 		String[] va= {};
 		Cursor cursor=db.rawQuery(sql, va);
-		List<String> notename_list=new ArrayList<String>();
+		List<String> noteNameList=new ArrayList<String>();
 		cursor.moveToFirst();
 		Log.e("queryAllNote分割线-------","===============");
 		try {
 		while(cursor.moveToNext()) {
-			notename_list.add(cursor.getString(1));
+			noteNameList.add(cursor.getString(1));
 			Log.e("存在笔记",cursor.getString(0));
 			Log.e("用户名",cursor.getString(2));
 			Log.e("笔记内容",cursor.getString(3));
@@ -173,11 +173,11 @@ public class DaoDemo {
 			Log.e("查询所有笔记","数据库中无数据");
 		}
 		db.close();
-		return notename_list;		
+		return noteNameList;		
 	}
 	//按title查询Note
-	public Note queryNoteByTitle(DBBuildAndConnection dbhelper,String title) {
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+	public Note queryNoteByTitle(DBBuildAndConnection dbHelper,String title) {
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		Log.e("DaoDemo::getTitle",title);
 		String sql="select * from Notes where title=?";
 		String [] va= {title};
@@ -196,15 +196,15 @@ public class DaoDemo {
 		db.close();
 		return note;
 	}
-	public void updateNote(DBBuildAndConnection dbhelper,String title,Note note) {
-		SQLiteDatabase db =dbhelper.getReadableDatabase();
+	public void updateNote(DBBuildAndConnection dbHelper,String title,Note note) {
+		SQLiteDatabase db =dbHelper.getReadableDatabase();
 		ContentValues values=new ContentValues();
 		values.put("notename", note.getNotename());
 		values.put("title", note.getTitle());
 		values.put("note_content",note.getNote_content());
 //		String where="title="+title;
 		db.update("Notes", values, "title=?",new String []{title});
-		this.queryNoteByTitle(dbhelper,note.getTitle());
+		this.queryNoteByTitle(dbHelper,note.getTitle());
 		db.close();
 	}
 }

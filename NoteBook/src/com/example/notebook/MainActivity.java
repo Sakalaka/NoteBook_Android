@@ -15,27 +15,27 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class MainActivity extends Activity implements AnimationListener,OnClickListener {
-	ImageView jumpguy;
-	ImageView notelogo;
+	ImageView backgroundPic;
+	ImageView noteLogo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		jumpguy=(ImageView) findViewById(R.id.jumpguy);
-		notelogo=(ImageView)findViewById(R.id.notelogo);
+		backgroundPic=(ImageView) findViewById(R.id.jumpguy);
+		noteLogo=(ImageView)findViewById(R.id.notelogo);
 		doJumpAnimation();
 		doShowLogo();
-		jumpguy.setOnClickListener(this);
+		backgroundPic.setOnClickListener(this);
 		
 	}
 
 	private void doShowLogo() {
 		// TODO Auto-generated method stub
-		AlphaAnimation showlogo=new AlphaAnimation(0, 1);
-		showlogo.setDuration(5000);
-		showlogo.setFillAfter(true);
-		notelogo.startAnimation(showlogo);
-		showlogo.setAnimationListener(this);
+		AlphaAnimation showLogo=new AlphaAnimation(0, 1);
+		showLogo.setDuration(5000);
+		showLogo.setFillAfter(true);
+		noteLogo.startAnimation(showLogo);
+		showLogo.setAnimationListener(this);
 	}
 
 	@Override
@@ -57,8 +57,8 @@ public class MainActivity extends Activity implements AnimationListener,OnClickL
 		return super.onOptionsItemSelected(item);
 	}
 	public void doJumpAnimation() {
-		jumpguy.setBackgroundResource(R.drawable.anlist);
-		AnimationDrawable an=(AnimationDrawable) jumpguy.getBackground();
+		backgroundPic.setBackgroundResource(R.drawable.anlist);
+		AnimationDrawable an=(AnimationDrawable) backgroundPic.getBackground();
 		an.start();
 	}
 

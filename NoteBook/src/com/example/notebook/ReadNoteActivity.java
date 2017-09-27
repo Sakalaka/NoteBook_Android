@@ -49,7 +49,7 @@ public class ReadNoteActivity extends Activity implements OnClickListener {
 		Log.e("Read username:",username);
 		switch(v.getId()) {
 		case R.id.update1:
-			upDate(getDateAndTime(),username,title1.getText().toString());
+			update(getDateAndTime(),username,title1.getText().toString());
 			Toast.makeText(ReadNoteActivity.this, "ÐÞ¸Ä³É¹¦",Toast.LENGTH_SHORT).show();
 			ReadNoteActivity.this.finish();
 			break;
@@ -60,7 +60,7 @@ public class ReadNoteActivity extends Activity implements OnClickListener {
 			break;
 		}
 	}
-	private void upDate(String notename,String username,String title) {
+	private void update(String notename,String username,String title) {
 		// TODO Auto-generated method stub
 		Bundle bundleW=this.getIntent().getExtras();
 		DBBuildAndConnection helper=new DBBuildAndConnection(ReadNoteActivity.this,"NoteBook.db", null, 1);

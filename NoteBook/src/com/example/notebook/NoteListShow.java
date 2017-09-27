@@ -50,9 +50,9 @@ public class NoteListShow extends Activity implements OnScrollListener,OnItemCli
 	 */
 	//数据表名
 	static String NOTE_TABLE="Notes";
-	ListView listview1;
-	Button addbtn;
-	TextView username1;
+	ListView listView1;
+	Button addBtn;
+	TextView userName1;
 	//声明适配器
 //	int number=1;
 	List<String> list;
@@ -65,17 +65,17 @@ public class NoteListShow extends Activity implements OnScrollListener,OnItemCli
 		list=new ArrayList<String>();
 		list.addAll(getData());
 		ada=new ArrayAdapter<String>(this,R.layout.list_item,list);
-		username1=(TextView) findViewById(R.id.username1);
-		addbtn=(Button) findViewById(R.id.addBtn);
-		addbtn.setOnClickListener(this);
+		userName1=(TextView) findViewById(R.id.username1);
+		addBtn=(Button) findViewById(R.id.addBtn);
+		addBtn.setOnClickListener(this);
 		//将从上一个Activity传来的username显示在页面上
 		bundle2=this.getIntent().getExtras();
-		username1.setText(bundle2.getString("user_name").toString());
-		listview1=(ListView) findViewById(R.id.listView1);
-		listview1.setAdapter(ada);
+		userName1.setText(bundle2.getString("user_name").toString());
+		listView1=(ListView) findViewById(R.id.listView1);
+		listView1.setAdapter(ada);
 		//设置滑动监听器
-		listview1.setOnScrollListener(this);
-		listview1.setOnItemClickListener(this);
+		listView1.setOnScrollListener(this);
+		listView1.setOnItemClickListener(this);
 		
 		
 	}
@@ -83,12 +83,12 @@ public class NoteListShow extends Activity implements OnScrollListener,OnItemCli
 		// TODO Auto-generated method stub
 //		从数据库获取用户名全为***的笔记列表名
 		DBBuildAndConnection helper=new DBBuildAndConnection(NoteListShow.this,"NoteBook.db", null, 1);
-		List<String> sublist=new ArrayList<String>();
+		List<String> subList=new ArrayList<String>();
 		DaoDemo dd=new DaoDemo();
 		bundle2=this.getIntent().getExtras();
-		sublist.addAll(dd.queryAllNoteName(helper, bundle2.getString("user_name").toString()));
+		subList.addAll(dd.queryAllNoteName(helper, bundle2.getString("user_name").toString()));
 		Log.e("NLS-username", bundle2.getString("user_name").toString());
-		return sublist;
+		return subList;
 	}
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {

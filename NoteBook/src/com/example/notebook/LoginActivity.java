@@ -24,7 +24,7 @@ public class LoginActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.startActivityForResult(intent, requestCode, options);
 	}
-	Button loginbtn,createbtn;
+	Button loginBtn,createBtn;
 	EditText username,password;
 	static String USER_TABLE="Users";
 	SharedPreferences settings;
@@ -33,12 +33,12 @@ public class LoginActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login_page);
-		loginbtn=(Button) findViewById(R.id.loginBtn);
-		createbtn=(Button) findViewById(R.id.createBtn);
+		loginBtn=(Button) findViewById(R.id.loginBtn);
+		createBtn=(Button) findViewById(R.id.createBtn);
 		username=(EditText)findViewById(R.id.username);
 		password=(EditText)findViewById(R.id.psw);
-		loginbtn.setOnClickListener(this);
-		createbtn.setOnClickListener(this); 
+		loginBtn.setOnClickListener(this);
+		createBtn.setOnClickListener(this); 
 		DBBuildAndConnection helper=new DBBuildAndConnection(LoginActivity.this,"NoteBook.db", null, 1);
 	}
 
